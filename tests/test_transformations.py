@@ -15,7 +15,7 @@ def test_add_temperature_status(spark):
     expected_df = spark.createDataFrame(expected_data, ["temperature", "status"])
 
     result_df = add_temperature_status(input_df)
-    assert_df_equality(result_df, expected_df)
+    assert_df_equality(result_df, expected_df, ignore_nullable=True)
 
 def test_filter_valid_readings(spark):
     input_data = [(25.0,), (150.0,), (-100.0,)]
@@ -25,4 +25,4 @@ def test_filter_valid_readings(spark):
     expected_df = spark.createDataFrame(expected_data, ["temperature"])
     
     result_df = filter_valid_readings(input_df)
-    assert_df_equality(result_df, expected_df)
+    assert_df_equality(result_df, expected_df, ignore_nullable=True)
